@@ -1,0 +1,12 @@
+pydantic>=2.4.1
+aiogram>=3.4.1
+asyncpg>=0.28.0
+ujson>=5.8.0
+starlette>=0.27.0
+async-cache
+hypercorn[uvloop]>=0.14.4
+flatten_json>=0.1.14
+aiohttp
+pydantic_settings
+celery
+redis
