@@ -26,7 +26,7 @@ HEADERS = {
   }
 
 
-TIMEOUT = 5
+TIMEOUT = 10
 
 
 async def get_currency(data: dict) -> Union[list, ErrorMessage]:
