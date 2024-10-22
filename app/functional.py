@@ -109,7 +109,7 @@ async def check_need():
 
     commission_swift = 0.45
     data_rub = await check_need_currency(data=DATA_RUB, need=need_usdt)
-    data_kzt = await check_need_currency(data=DATA_KZT, need=need_usdt, skip=2)
+    data_kzt = await check_need_currency(data=DATA_KZT, need=need_usdt, skip=3)
 
     if not data_rub or not data_kzt:
         message = "Пусто!"
