@@ -1,7 +1,7 @@
 import aiohttp, re
 from app.logger import log
 from app.models import ErrorMessage
-from app.scraping.api import get_currency
+from app.scraping.api import get_currency, get_well_kzt_rub
 from app.scraping.functional import fget_payment
 from app.settings import tb_settings, DATA_RUB, DATA_KZT
 
@@ -101,6 +101,12 @@ async def check_need():
     message = ""
     need_usdt = 1000
     well_kzt_rub = 5.09
+    bank_info = await get_well_kzt_rub()
+    if bank_info:
+        for bi in bank_info:
+            if bi['buyCode'] == "RUB" and bi['sellCode'] == "KZT":
+                well_kzt_rub = float(bi['sellRate'])
+
     commission_swift = 0.45
     data_rub = await check_need_currency(data=DATA_RUB, need=need_usdt)
     data_kzt = await check_need_currency(data=DATA_KZT, need=need_usdt, skip=2)
@@ -123,6 +129,8 @@ async def check_need():
 
     message += f"Комиссия swift, %: <b>{profit['commission_swift']}</b> \n"
     message += f"Комиссия swift, руб: <b>{profit['commission_swift_rub']}</b> \n"
+
+    message += f"Курс KZT->RUB, %: <b>{well_kzt_rub}</b> \n"
 
     message += f"Доходность, руб: <b>{profit['profit_money_rub']}</b> \n"
     message += f"Доходность, %: <b>{profit['profit_money_per']}</b> \n"

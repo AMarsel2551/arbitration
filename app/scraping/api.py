@@ -57,3 +57,15 @@ async def get_payments() -> Union[list, ErrorMessage]:
         else:
             return ErrorMessage(code=400, message=f"Ошибка запроса: {r.status}")
 
+
+async def get_well_kzt_rub() -> Union[list, ErrorMessage]:
+    async with aiohttp.ClientSession() as session:
+        r = await session.get(
+            f"https://bankffin.kz/api/exchange-rates/getRates",
+            timeout=TIMEOUT
+        )
+        if r.status == 200:
+            info = await r.json()
+            return info['data']['mobile']
+        else:
+            return ErrorMessage(code=400, message=f"Ошибка запроса: {r.status}")
