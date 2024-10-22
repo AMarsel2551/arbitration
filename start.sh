@@ -4,7 +4,7 @@
 export PYTHONPATH=$(pwd)
 
 ## Запуск бота телеграмма
-python app/main.py &
+python app/main.py
 
 ### Celery
 #celery -A app.celery_settings.main worker -Q arbitration_main -c 1 -l INFO -n arbitration@%h &
