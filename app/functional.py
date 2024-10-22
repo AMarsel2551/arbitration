@@ -100,7 +100,7 @@ async def calculation_profit(sum_kzt: int, well_kzt_rub: float, commission_swift
 async def check_need():
     message = ""
     need_usdt = 1000
-    well_kzt_rub = 5.06
+    well_kzt_rub = 5.09
     commission_swift = 0.45
     data_rub = await check_need_currency(data=DATA_RUB, need=need_usdt)
     data_kzt = await check_need_currency(data=DATA_KZT, need=need_usdt, skip=2)
